@@ -67,7 +67,7 @@ Create project:
 
 Open Rider > New Solution > Select Project Type Web > Language C# > Web App (Model-View-Controller) > Create
 
-### Test run
+### Test run the empty template
 
 Open main view file: `Views` > `Home` > `Index.cshtml`
 
@@ -75,3 +75,42 @@ Click the green Run button or `F5` to build + run.
 
 ### Model-View-Controller structure
 
+An html button in `View` can call ("post") a `Controller` action.
+
+Example:
+
+Button in Home `View` :
+
+```cshtml
+<form method="post" asp-action="MyAction">
+    <button type="submit">Button Name</button>
+</form>
+```
+Clicking this button will attempt to trigger `MyAction` under Home `Controller` i.e. it will look for `public IActionResult MyAction`.
+
+The action function has to always return a `View`.
+
+Note: in this case, this action needs to be a `HttpPost`.
+
+Example:
+
+```csharp
+[HttpPost]
+        public IActionResult LaunchGame()
+        {
+            // do stuff
+            return View("Index");
+        }
+```
+
+One simple way to pass around information between `Controller` and `View` is through the `ViewBag`: you can put a string into the `ViewBag` inside the `Controller` and access it inside `View`.
+
+Example:
+
+In controller: `ViewBag.Message = "Hello world!";`
+
+In view: `<h1>@ViewBag.Message</h1>`
+
+Notes:
+- you can dynamically create a parameter inside `ViewBag`; it does not automatically have one called `Message` - it starts having one when you assign it. You can pick any name, multiple names as you wish e.g. `ViewBag.Information`, `ViewBag.Status` etc.
+- Please change "Hello world" to something more interesting
