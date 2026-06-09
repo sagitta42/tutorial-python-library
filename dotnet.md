@@ -61,6 +61,17 @@ $ source ~/.bashrc
 ```
 then test `dotnet --version`
 
-## Create MVC Web App project
+## MVC Web App project
+
+Create project:
 
 Open Rider > New Solution > Select Project Type Web > Language C# > Web App (Model-View-Controller) > Create
+
+### Test run
+
+Open main view file: `Views` > `Home` > `Index.cshtml`
+
+Click the green Run button or `F5` to build + run.
+
+### Model-View-Controller structure
+
