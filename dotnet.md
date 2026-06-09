@@ -114,3 +114,51 @@ In view: `<h1>@ViewBag.Message</h1>`
 Notes:
 - you can dynamically create a parameter inside `ViewBag`; it does not automatically have one called `Message` - it starts having one when you assign it. You can pick any name, multiple names as you wish e.g. `ViewBag.Information`, `ViewBag.Status` etc.
 - Please change "Hello world" to something more interesting
+
+### Publish project
+
+Simplistic example of publishing the project to be accessible and runnable for another person.
+
+#### Command line
+
+In the folder of your project e.g. `RiderProjects/MyWebApp`, run:
+
+```bash
+dotnet publish MyWebApp.sln -c Release --self-contained true
+```
+
+It will create a folder `MyWebApp/bin/Release/netXX.X/linux-x64/publish` (where `XX.X` is the .NET version used for the project e.g. `net10.0`) which contains published assets.
+
+"Self contained" means can be run on another computer given the assets i.e. includes ALL necessary assets (including `wwwroot` and Microsoft `.dlls`).
+
+#### With Rider
+
+[TODO]
+
+#### Run
+
+To be able to run, must register installed .NET in `.bashrc`:
+
+```bash
+export DOTNET_ROOT=$HOME/.dotnet
+```
+
+(use same path as one for `$PATH`)
+
+In the folder `MyWebApp/bin/Release/netXX.X`, run the executable (Linux):
+
+```bash
+./MyWebApp
+```
+
+If the browser doesn't open automatically, click the localhost link shown in "Now listening on:"
+
+#### Publish
+
+Zip all the folder with its contents under `publish` into a `.zip` or `.tar.gz` file, and publish that whole folder on your website of choice (e.g. GitHub)
+
+Now another person can download it, unzip it, and run `./MyWebApp` to launch the Web App.
+
+The typical way is to publish the source code of the web app as a GitHub repository; then publish a Release (lick "Releases" on the home page of the GitHub repo) where the `.tar.gz` file is attached, and some release notes on the app are included (including the version of the release).
+
+(of course the typical way is the Web App being hosted on a server and accessible in browser, this is the simplest exercise method)
